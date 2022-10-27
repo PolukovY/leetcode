@@ -35,6 +35,7 @@ class SolutionTest {
 
         var expected = new Solution.ListNode();
 
+
         Solution.ListNode actual = new Solution().mergeTwoLists(listNode1, listNode2);
 
         assertThat(actual).isEqualTo(expected);
@@ -47,7 +48,6 @@ class SolutionTest {
         listNode2.next = new Solution.ListNode(0);
 
         var expected = new Solution.ListNode();
-        expected.next = new Solution.ListNode(0);
 
         Solution.ListNode actual = new Solution().mergeTwoLists(listNode1, listNode2);
 
