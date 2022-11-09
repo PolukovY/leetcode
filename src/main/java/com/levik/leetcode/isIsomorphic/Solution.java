@@ -8,13 +8,11 @@ public class Solution {
         Map<Character, Character> mapSt = new HashMap<>();
         Map<Character, Character> mapTs = new HashMap<>();
 
-        int n = s.length();
-
-        for(int i = 0; i<n; i++) {
+        for(int i = 0; i< s.length(); i++) {
             char sVal = s.charAt(i);
             char tVal = t.charAt(i);
 
-            if ((mapSt.containsKey(sVal) && mapSt.get(sVal) != tVal) || (mapTs.containsKey(tVal) && mapTs.get(tVal) != sVal)) {
+            if ((isKeyExistAndEqualsWith(mapSt, sVal, tVal) || isKeyExistAndEqualsWith(mapTs, tVal, sVal))) {
                 return false;
             }
 
@@ -23,5 +21,9 @@ public class Solution {
         }
 
         return true;
+    }
+
+    private boolean isKeyExistAndEqualsWith(Map<Character, Character> container, char key, char val) {
+        return container.containsKey(key) && container.get(key) != val;
     }
 }
