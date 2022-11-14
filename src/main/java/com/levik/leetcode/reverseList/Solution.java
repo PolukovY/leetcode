@@ -1,7 +1,5 @@
 package com.levik.leetcode.reverseList;
 
-import java.util.Stack;
-
 public class Solution {
 
     public static class ListNode {
