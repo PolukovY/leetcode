@@ -21,9 +21,6 @@ public class TimeMap {
 
     public String get(String key, int timestamp) {
         List<Pair> values = storage.getOrDefault(key, new ArrayList<>());
-        if (values.isEmpty()) {
-            return "";
-        }
         return binarySearch(timestamp, values);
     }
 
@@ -34,7 +31,7 @@ public class TimeMap {
         int high = values.size() - 1;
 
         while (low - high < 1) {
-            int m = (low + high) / 2;
+            int m = low + (high - low) / 2;
             var pair = values.get(m);
 
             if (pair.timestamp <= timestamp) {
@@ -45,18 +42,10 @@ public class TimeMap {
             }
         }
 
-
         return res;
     }
 
 
-    private static class Pair {
-        public final String value;
-        public final int timestamp;
-
-        private Pair(String value, int timestamp) {
-            this.value = value;
-            this.timestamp = timestamp;
-        }
+    private record Pair(String value, int timestamp) {
     }
 }
