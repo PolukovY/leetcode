@@ -8,21 +8,21 @@ public class Solution {
         Arrays.sort(players);
         Arrays.sort(trainers);
 
-        int i = 0;
-        int count = 0;
+        int trainerIndex = 0;
+        int matchedPlayerCount = 0;
 
         for (int player : players) {
-            while (i < trainers.length) {
-                int trainer = trainers[i];
-                i++;
+            while (trainerIndex < trainers.length) {
+                int trainer = trainers[trainerIndex];
+                trainerIndex++;
 
                 if (trainer >= player) {
-                    count++;
+                    matchedPlayerCount++;
                     break;
                 }
             }
         }
 
-        return count;
+        return matchedPlayerCount;
     }
 }
