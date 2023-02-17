@@ -8,19 +8,17 @@ public class Solution {
         Arrays.sort(players);
         Arrays.sort(trainers);
 
-        int trainerIndex = 0;
         int matchedPlayerCount = 0;
+        int p1 = 0;
+        int p2 = 0;
 
-        for (int player : players) {
-            while (trainerIndex < trainers.length) {
-                int trainer = trainers[trainerIndex];
-                trainerIndex++;
-
-                if (trainer >= player) {
-                    matchedPlayerCount++;
-                    break;
-                }
+        while (p1 < players.length && p2 < trainers.length) {
+            if (players[p1] <= trainers[p2]) {
+                matchedPlayerCount++;
+                p1++;
             }
+
+            p2++;
         }
 
         return matchedPlayerCount;
