@@ -3,40 +3,37 @@ package com.levik.leetcode.searchMatrix;
 public class Solution {
 
     public boolean searchMatrix(int[][] matrix, int target) {
-        boolean result = false;
-        for (int[] row : matrix) {
-            int lastVal = row[row.length - 1];
-            if (lastVal == target) {
-                result = true;
-            } else if (lastVal > target) {
-                result = binarySearch(row, target);
-            }
+        boolean found = false;
 
-            if (result) {
+        for (int [] row : matrix) {
+            boolean itemFound = search(row, target);
+
+            if (itemFound) {
+                found = true;
                 break;
             }
         }
 
-        return result;
+        return found;
+
     }
 
-    private boolean binarySearch(int[] array, int target) {
-        int left = -1;
-        int right = array.length;
+    private boolean search(int[] row, int target) {
+        int l = -1;
+        int r = row.length;
 
-        while (right - left > 1) {
-            int m  = left + (right - left) / 2;
-            int val = array[m];
+        while (r - l > 1) {
+            int m = l + (r - l) / 2;
+            int val = row[m];
 
-            if (val  == target) {
-                return true;
+            if (val < target) {
+                l = m;
             } else if (val > target) {
-                right = m;
+                r = m;
             } else {
-                left = m;
+                return true;
             }
         }
-
         return false;
     }
 }

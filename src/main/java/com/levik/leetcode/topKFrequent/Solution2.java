@@ -12,18 +12,23 @@ public class Solution2 {
             map.put(num, current + 1);
         }
 
-        if (map.size() == 1) {
-            return new int[]{map.keySet().stream().findFirst().get()};
-        }
-
-        PriorityQueue<Map.Entry<Integer, Integer>> heap = new PriorityQueue<>(Comparator.comparingInt(Map.Entry::getValue));
-        heap.addAll(map.entrySet());
+        int[] counting = new int[nums.length + 1];
+        map.forEach((key, value) ->
+                counting[key] = value
+        );
 
         int[] res = new int[k];
+        int index = 0;
 
-        for (int i = 0; i < k; i++) {
-            Map.Entry<Integer, Integer> poll = heap.poll();
-            res[i] = poll.getValue();
+        for (int i = counting.length - 1; i > 0; i--) {
+            if (index == k) {
+                break;
+            }
+            int count = counting[i];
+            if (count != 0) {
+                res[index] = count;
+                index++;
+            }
         }
 
         return res;
